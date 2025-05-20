@@ -93,7 +93,7 @@ Add following entries to the  `.env` or `.env.*` file, and make sure to replace 
 ```bash title=".env.local"
 ASGARDEO_CLIENT_ID="<your-app-client-id>"
 ASGARDEO_CLIENT_SECRET="<your-app-client-secret>"
-ASGARDEO_ORGANIZATION="<your-asgardeo-organization-name>"
+ASGARDEO_BASE_URL="<your-asgardeo-organization-base-url>"
 ```
 
 ## Add `asgardeoMiddleware()` to your app
@@ -164,13 +164,13 @@ export default function RootLayout({
 }
 ```
 
-## Add `SignIn` and `SignOut` buttons to your app
+## Add `SignInButton` and `SignOutButton` buttons to your app
 
-To add sign-in and sign-out buttons to your app, you can use the `SignIn` and `SignOut` components provided by the Asgardeo SDK.
+To add sign-in and sign-out buttons to your app, you can use the `SignInButton` and `SignOutButton` components provided by the Asgardeo SDK.
 
 ```javascript title="app/layout.tsx" hl_lines="31-39"
 import type { Metadata } from 'next'
-import { AsgardeoProvider, SignedIn, SignedOut, SignIn, SignOut } from '@asgardeo/react'
+import { AsgardeoProvider, SignedIn, SignedOut, SignInButton, SignOutButton } from '@asgardeo/react'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 
@@ -200,10 +200,10 @@ export default function RootLayout({
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <header>
             <SignedIn>
-              <SignOut />
+              <SignOutButton />
             </SignedIn>
             <SignedOut>
-              <SignIn />
+              <SignInButton />
             </SignedOut>
             <SignedIn>
               <UserDropdown />
@@ -230,10 +230,10 @@ If you would like to create a dedicated sign-in page instead of using the {{ pro
 Create a new folder named `sign-in` inside the `app` directory. And inside that, create another folder with the name `[[...sign-in]]`. Then create a new file named `page.tsx` inside.
 
 ```javascript title="app/sign-in/[[...sign-in]]/page.tsx"
-import { SignIn } from '@asgardeo/next'
+import { SignInButton } from '@asgardeo/next'
 
 export default function Page() {
-  return <SignIn />
+  return <SignInButton />
 }
 ```
 
